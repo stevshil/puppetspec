@@ -1,0 +1,30 @@
+server {
+    listen       <%= @port %> default_server;
+    listen       [::]:<%= @port %> default_server;
+    server_name  <%= @server_name %>;
+    root         <%= @root %>;
+
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+
+    location / {
+    }
+
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        #fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index <%= @cgi_index %>;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+}

@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifests
+  modules_path: modules
+  hierdata_path: hierdata
+
+platforms:
+  - name: centos-7.2
+    driver_plugin: vagrant
+    driver_config:
+      box: bento/centos-7.2
+
+verifier:
+  ruby_bindir: '/usr/bin/'
+  #name: serverspec
+
+suites:
+  - name: default
+    manifests: site.pp

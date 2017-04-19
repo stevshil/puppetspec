@@ -1,0 +1,31 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: steveshilling
+  region: eu-west-2
+  availability_zone: b
+  instance_type: t2.micro
+  iam_profile_name: ee_kitchen
+  security_group_ids: ["sg-6d30b304"]
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifests
+  modules_path: modules
+  hierdata_path: hierdata
+
+platforms:
+  - name: centos-7.2
+    driver:
+      image_id: ami-9c363cf8
+    transport:
+      username: ec2-user
+      ssh_key: ~/.ssh/id_rsa
+
+verifier:
+  ruby_bindir: '/usr/bin/'
+  #name: serverspec
+
+suites:
+  - name: default
+    manifests: site.pp
