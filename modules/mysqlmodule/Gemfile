@@ -1,0 +1,18 @@
+gem 'serverspec'
+
+source 'https://rubygems.org'
+
+gem "test-kitchen"
+gem "kitchen-puppet"
+gem "kitchen-docker"
+gem "kitchen-vagrant"
+gem "rake"
+gem "bundler"
+gem "puppet"
+gem "puppet-lint"
+gem "puppet-syntax"
+gem "puppetlabs_spec_helper"
+gem "rspec"
+gem "rspec-puppet"
+gem "rspec-puppet-utils"
+gem "rspec-support"
